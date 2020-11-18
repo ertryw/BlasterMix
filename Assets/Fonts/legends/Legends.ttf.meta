@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: cc7323e77e21f764b8d4acf960793608
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Legends
+  fontNames:
+  - Legends
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c7b422480823c724eb8f6c6beb59dee7, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
