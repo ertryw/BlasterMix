@@ -141,7 +141,7 @@ public class MouseBehavie : MonoBehaviour
                 if (Combo.Variable.Value % ComboToLaser == 0)
                 {
                     ComboTxt.gameObject.LeanScale(new Vector3(3, 3, 3), 0.2f).setOnComplete(Small);
-                    qt.MoveInLaser();
+                    qt.MoveInQTLaser();
                     MouseCoursor.Instance.UIImageClick = img2;
                     MouseCoursor.Instance.GetUIImageProps();
                 }
@@ -164,7 +164,7 @@ public class MouseBehavie : MonoBehaviour
                 SnailHandle snail = hit.collider.gameObject.GetComponent<SnailHandle>();
                 snail.SnailBoom();
                 SoundMenager.Play(slow, 0.5f);
-                qt.MoveInSlow();
+                qt.MoveInQTSlow();
             }
         }
         else

@@ -14,13 +14,8 @@ public class Spawner : MonoBehaviour
 
     public float offset = 0.1f;
     public float polynomial = 30;
-    public GameEtaps GE;
     // Start is called before the first frame update
 
-    private void Awake()
-    {
-        GE = GetComponent<GameEtaps>();
-    }
     void Start()
     {
         StartCoroutine("Spawn");
@@ -50,7 +45,7 @@ public class Spawner : MonoBehaviour
         while (true)
         {
 
-            if (GE.Stage == stages.play)
+            if (GameStage.stage == Stages.Play)
             {
                 polynomial = 0.3490808f * (Mathf.Pow(FallSpeed.Variable.Value, -1.934455f));
 

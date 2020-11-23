@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum stages { firstrun,  play, end , endreturn, replay }
-
 
 public class GameEtaps : MonoBehaviour
 {
@@ -12,24 +10,18 @@ public class GameEtaps : MonoBehaviour
     public FloatReference Scores;
     public FloatReference Lifes;
     public FloatReference Combo;
-    public Rigidbody2D PlayerRB;
     public GameObject Player;
     public GameObject EndPanel;
     public GameObject PlayerSpawn;
-
     public Text ScoresTxt;
-    public stages Stage = stages.firstrun;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-       // Screen.SetResolution(700, 900,true);
+        GameStage.stage = Stages.Firstrun;
     }
 
     void ResetVaribles()
     {
-
         GameSpeed.Variable.Value = 0.3f;
         Scores.Variable.Value = 0;
         Lifes.Variable.Value = 10;
@@ -40,18 +32,18 @@ public class GameEtaps : MonoBehaviour
     {
         Application.Quit();
     }
+
     public void PlayAgainGame()
     {
-        Stage = stages.firstrun;
+        GameStage.stage = Stages.Firstrun;
         EndPanel.transform.LeanMoveLocalY(800, 1f);
         Player.transform.LeanMove(PlayerSpawn.transform.position, 2f);
         Player.transform.LeanScale(new Vector3(1, 1, 1), 2f);
-        // PlayerRB.bodyType = RigidbodyType2D.Static;
     }
 
     public void EndComplete()
     {
-        Stage = stages.endreturn;
+        GameStage.stage = Stages.EndReturn;
     }
 
 
@@ -73,16 +65,15 @@ public class GameEtaps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Stage == stages.firstrun)
+        if (GameStage.stage == Stages.Firstrun)
         {
             ResetVaribles();
-            Stage = stages.play;
+            GameStage.stage = Stages.Play;
         }
 
         if (Lifes.Variable.Value == 0)
         {
-            Stage = stages.end;
-            //PlayerRB.bodyType = RigidbodyType2D.Dynamic;
+            GameStage.stage = Stages.End;
             Player.transform.LeanScale(new Vector3(0.1f, 0.1f, 0.1f), 2f);
             Player.transform.LeanMove(new Vector3(PlayerSpawn.transform.position.x, PlayerSpawn.transform.position.y - 10, PlayerSpawn.transform.position.z), 3f);
             EndPanel.transform.LeanMoveLocalY(0, 1f).setOnComplete(EndComplete).setOnComplete(DestroyShields);
